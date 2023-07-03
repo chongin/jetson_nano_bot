@@ -10,8 +10,9 @@ std::map<char, std::string> KEY_MAPPING = {
     {'S', "down"},
     {'A', "left"},
     {'D', "right"},
-    {'Q', "speed+"}, //w
-    {'E', "speed-"} //s
+    {'Q', "speed+"},
+    {'E', "speed-"},
+    {'R', "reset"}
 };
 
 
@@ -42,13 +43,14 @@ int main(int argc, char** argv)
                     keyDown[event.key.keysym.scancode] = true;
 
                     key = SDL_GetScancodeName(event.key.keysym.scancode);
-                    if (KEY_MAPPING.count(*key) > 0)
+                    if (KEY_MAPPING.count(*key) > 0 && *key != 'R')
                     {
                         message.data = KEY_MAPPING[*key];
                         pub.publish(message);
+                        std::cout << "Pressed, Publish: " << message.data << std::endl;
                     }
-
-                    std::cout << "Key Pressed: " << key << std::endl;
+                    else
+                        std::cout << "Key Pressed: " << key << std::endl;
                     break;
                 case SDL_KEYUP:
                     keyDown[event.key.keysym.scancode] = false;
@@ -56,11 +58,24 @@ int main(int argc, char** argv)
                     key = SDL_GetScancodeName(event.key.keysym.scancode);
                     if (KEY_MAPPING.count(*key) > 0)
                     {
-                        message.data = "stop";
-                        pub.publish(message);
-                    }
+                        if (*key == 'W' || *key =='S')
+                        {
+                            std::cout << "Enter stop: " << *key << std::endl;
+                            message.data = "stop";
+                            pub.publish(message);
+                            
+                        }
+                        else if (*key == 'R')
+                        {
+                             std::cout << "Enter reset: " << *key << std::endl;
+                            message.data = KEY_MAPPING[*key];
+                            pub.publish(message);
+                        }
 
-                    std::cout << "Key Released: " << SDL_GetScancodeName(event.key.keysym.scancode) << std::endl;
+                        std::cout << "Released, Publish: " << message.data << std::endl;
+                    }
+                    else
+                        std::cout << "Key Released: " << SDL_GetScancodeName(event.key.keysym.scancode) << std::endl;
                     break;
                 default:
                     // Handle other event types

@@ -1,8 +1,5 @@
 {
     "files.associations": {
-        "array": "cpp",
-        "string": "cpp",
-        "string_view": "cpp",
         "cctype": "cpp",
         "clocale": "cpp",
         "cmath": "cpp",
@@ -14,6 +11,7 @@
         "ctime": "cpp",
         "cwchar": "cpp",
         "cwctype": "cpp",
+        "array": "cpp",
         "atomic": "cpp",
         "strstream": "cpp",
         "*.tcc": "cpp",
@@ -34,6 +32,8 @@
         "optional": "cpp",
         "ratio": "cpp",
         "set": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
         "system_error": "cpp",
         "tuple": "cpp",
         "type_traits": "cpp",
@@ -53,7 +53,6 @@
         "thread": "cpp",
         "cfenv": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp",
-        "csignal": "cpp"
+        "typeinfo": "cpp"
     }
 }
