@@ -6,13 +6,13 @@
 
 
 std::map<char, std::string> KEY_MAPPING = {
-    {'W', "up"},
-    {'S', "down"},
-    {'A', "left"},
-    {'D', "right"},
-    {'Q', "speed+"},
-    {'E', "speed-"},
-    {'R', "reset"}
+    {'W', "W"},
+    {'S', "S"},
+    {'A', "A"},
+    {'D', "D"},
+    {'Q', "Q"},
+    {'E', "E"},
+    {'R', "R"}
 };
 
 
@@ -61,7 +61,7 @@ int main(int argc, char** argv)
                         if (*key == 'W' || *key =='S')
                         {
                             std::cout << "Enter stop: " << *key << std::endl;
-                            message.data = "stop";
+                            message.data = "T";
                             pub.publish(message);
                             
                         }
